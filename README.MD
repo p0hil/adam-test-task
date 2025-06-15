@@ -10,6 +10,6 @@ docker-compose up -d
 It will be available on http://localhost:5173
 
 
-P.S. Proper error handling and generic response types are not implemented, 
+P.S. Proper error handling, generic response types, test and etc are not implemented, 
 but it’s more than enough for the test task.
 
