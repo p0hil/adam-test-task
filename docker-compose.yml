@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: painter-mongo
+    hostname: mongo
+    ports:
+      - "27017:27017"
+    command: [ "--replSet", "rs0" ]
+    volumes:
+      - mongo-data:/data/db
+      - ./mongo-init:/mongo-init
+
+  backend:
+    build: ./backend
+    container_name: painter-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/painter-booking?replicaSet=rs0
+      - JWT_SECRET=strong-jwt-secret
+    depends_on:
+      - mongo
+    volumes:
+      - ./backend:/app
+    command: npm run start
+
+  frontend:
+    build: ./frontend
+    container_name: painter-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+    command: npm run dev
+
+volumes:
+  mongo-data:
