@@ -9,6 +9,14 @@ docker-compose up -d
 
 It will be available on http://localhost:5173
 
+Painters: 
+alice@example.com / password
+bob@example.com / password
+charlie@example.com / password
+
+Customer:
+john@example.com / password
+
 
 P.S. Proper error handling, generic response types, test and etc are not implemented, 
 but it’s more than enough for the test task.
